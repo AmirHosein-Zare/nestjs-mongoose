@@ -16,7 +16,7 @@ export class UserService {
     }
 
     // find by id
-    async findById(id: number): Promise<User>{
+    async findById(id: string): Promise<User>{
         const user = await this.userRep.findById(id);
         if(!user) throw new NotFoundException();
         return user;
@@ -38,9 +38,12 @@ export class UserService {
     }
 
     // update user method
-    async update(id: number, user: Partial<User>): Promise<User>{
+    async update(id: string, user: Partial<User>): Promise<User>{
         return await this.userRep.update(id, user);
     }
 
-    
+    // delete use method
+    async delete(id: string): Promise<User>{
+        return await this.userRep.delete(id);
+    }
 }

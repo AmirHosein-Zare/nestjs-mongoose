@@ -15,7 +15,7 @@ export class UserRepository {
     }
 
     // find by id method
-    async findById(id: number): Promise<User>{
+    async findById(id: string): Promise<User>{
         return await this.userModel.findById(id);
     }
 
@@ -31,12 +31,12 @@ export class UserRepository {
     }
 
     // update method
-    async update(id: number, user: Partial<User>): Promise<User>{
+    async update(id: string, user: Partial<User>): Promise<User>{
         return await this.userModel.findByIdAndUpdate(id, user, { new: true });
     }
 
     // delete method
-    async delete(id: number): Promise<User>{
+    async delete(id: string): Promise<User>{
         return await this.userModel.findByIdAndRemove(id);
     }
 }
