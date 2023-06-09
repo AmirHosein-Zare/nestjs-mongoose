@@ -9,5 +9,8 @@ export class UserRepository {
         @InjectModel(User.name) private userModel: Model<UserDocument>
     ){}
 
-    
+    // find all method
+    async findAll(): Promise<User[]>{
+        return await this.userModel.find();
+    }
 }
