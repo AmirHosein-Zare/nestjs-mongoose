@@ -18,4 +18,10 @@ export class UserRepository {
     async findById(id: number): Promise<User>{
         return await this.userModel.findById(id);
     }
+
+    // create method
+    async create(user: User): Promise<User>{
+        const newUser = new this.userModel(user);
+        return await newUser.save()
+    }
 }
