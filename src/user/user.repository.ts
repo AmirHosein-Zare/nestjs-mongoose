@@ -30,5 +30,10 @@ export class UserRepository {
         return await newUser.save()
     }
 
+    // update method
+    async update(id: number, user: User): Promise<User>{
+        return await this.userModel.findByIdAndUpdate(id, user, { new: true });
+    }
+
     
 }
