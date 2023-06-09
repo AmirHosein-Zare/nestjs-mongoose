@@ -35,5 +35,8 @@ export class UserRepository {
         return await this.userModel.findByIdAndUpdate(id, user, { new: true });
     }
 
-    
+    // delete method
+    async delete(id: number): Promise<User>{
+        return await this.userModel.findByIdAndRemove(id);
+    }
 }
