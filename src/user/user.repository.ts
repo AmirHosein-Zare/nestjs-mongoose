@@ -31,7 +31,7 @@ export class UserRepository {
     }
 
     // update method
-    async update(id: number, user: User): Promise<User>{
+    async update(id: number, user: Partial<User>): Promise<User>{
         return await this.userModel.findByIdAndUpdate(id, user, { new: true });
     }
 
