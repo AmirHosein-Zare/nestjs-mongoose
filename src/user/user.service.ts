@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { UserRepository } from './user.repository';
 import { User } from './schema/user.schema';
 import { FilterQuery } from 'mongoose';
+import { uuid } from "uuidv4";
 
 @Injectable()
 export class UserService {
@@ -26,6 +27,19 @@ export class UserService {
         const user = await this.userRep.find(query);
         if(!user) throw new NotFoundException();
         return user;
+    }
+
+    // create user method
+    async create(user: User): Promise<User>{
+        return await this.userRep.create({
+            userId: uuid(),
+            ...user
+        });
+    }
+
+    // update user method
+    async update(id: number, user: Partial<User>): Promise<User>{
+        return await this.userRep.update(id, user);
     }
 
     
