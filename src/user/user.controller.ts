@@ -20,7 +20,7 @@ export class UserController {
     }
 
     @Post('query')
-    async find(@Body() query: FilterQuery<User>): Promise<User[]>{
+    async find(@Body() query: FilterQuery<User>): Promise<User>{
         return await this.userService.findByQuery(query);
     }
 

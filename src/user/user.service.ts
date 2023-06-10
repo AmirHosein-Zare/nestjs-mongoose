@@ -23,7 +23,7 @@ export class UserService {
     }
 
     // find by query
-    async findByQuery(query: FilterQuery<User>):Promise<User[]>{
+    async findByQuery(query: FilterQuery<User>):Promise<User>{
         const user = await this.userRep.find(query);
         if(!user) throw new NotFoundException();
         return user;
