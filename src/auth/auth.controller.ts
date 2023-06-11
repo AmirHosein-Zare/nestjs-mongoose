@@ -13,6 +13,7 @@ export class AuthController {
     @Post('login')
     async validate(@Request() req): Promise<any>{
         return {
+            userId: req.body,
             token: "token is here"
         }
     }
