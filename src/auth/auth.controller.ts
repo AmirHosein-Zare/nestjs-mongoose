@@ -1,6 +1,7 @@
 import { Controller, Post, Request, UseGuards } from '@nestjs/common';
 import { LocalStrategy } from './local.strategy';
 import { AuthGuard } from '@nestjs/passport';
+import { UseGuard } from './UserGaurd';
 
 @Controller('auth')
 export class AuthController {
@@ -8,11 +9,10 @@ export class AuthController {
         private readonly localStrategy: LocalStrategy
     ){}
 
-    @UseGuards(AuthGuard('local'))
+    @UseGuards(UseGuard)
     @Post('login')
     async validate(@Request() req): Promise<any>{
         return {
-            userId: req.body,
             token: "token is here"
         }
     }
