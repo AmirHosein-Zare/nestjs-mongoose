@@ -6,13 +6,14 @@ import { LocalStrategy } from './local.strategy';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from 'src/user/schema/user.schema';
 import { JwtModule } from '@nestjs/jwt';
+import { JwtConstant } from 'src/config/jwt.constant';
 
 @Module({
   imports: [
     PassportModule, 
     MongooseModule.forFeature([{name: User.name, schema: UserSchema}]),
     JwtModule.register({
-      secret: process.env.JwtKey,
+      secret: JwtConstant.secret,
       signOptions: {
         expiresIn: '60m'
       }
