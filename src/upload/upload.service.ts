@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UploadedFile } from '@nestjs/common';
 
 @Injectable()
-export class UploadService {}
+export class UploadService {
+    upload(@UploadedFile() file){
+        return file
+    }
+}
