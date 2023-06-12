@@ -24,7 +24,7 @@ export class AuthService {
     }
 
     // getTokenForUser using jwt
-    async getTokenForUser(user: User): Promise<any>{
+    async getTokenForUser(user: any): Promise<any>{
         return this.jwtService.sign({
             username: user.username,
             sub: user.userId
