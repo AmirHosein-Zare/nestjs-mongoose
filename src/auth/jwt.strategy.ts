@@ -5,12 +5,12 @@ import { AuthService } from "./auth.service";
 import { JwtConstant } from "src/config/jwt.constant";
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy){
+export class JwtStrategy extends PassportStrategy(Strategy, 'jwt'){
     constructor(
         private readonly authService : AuthService
     ){
         super({
-            jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken,
+            jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
             ignoreExpiration: false,
             secretOrKey: JwtConstant.secret
         });
