@@ -30,6 +30,6 @@ export class AuthService {
     }
 
     async getProfile(payload: any): Promise<any>{
-        return await this.userModel.findById(payload.sub);
+        return await this.userModel.findOne({userId: payload.sub});
     }
 }
