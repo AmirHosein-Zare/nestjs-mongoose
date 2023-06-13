@@ -13,8 +13,6 @@ export class AuthService {
 
     // validate username and password of user using passport.js
     async validate(username: string, password: string): Promise<any>{
-        console.log('user service ->' + username + ' ----- ' + password);
-        
         const user = await this.userModel.findOne({username: username});
         if(user && user.password === password){
             return user;
@@ -29,5 +27,9 @@ export class AuthService {
             username: user.username,
             sub: user.userId
         })
+    }
+
+    async getProfile(payload: any): Promise<any>{
+        return await this.userModel.findById(payload.sub);
     }
 }
