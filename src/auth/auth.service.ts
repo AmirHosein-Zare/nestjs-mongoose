@@ -3,6 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User, UserDocument } from 'src/user/schema/user.schema';
+import * as bcrypt from "bcrypt";
 
 @Injectable()
 export class AuthService {
@@ -14,7 +15,7 @@ export class AuthService {
     // validate username and password of user using passport.js
     async validate(username: string, password: string): Promise<any>{
         const user = await this.userModel.findOne({username: username});
-        if(user && user.password === password){
+        if(user && bcrypt.compare(user.password, password)){
             return user;
         }
 
