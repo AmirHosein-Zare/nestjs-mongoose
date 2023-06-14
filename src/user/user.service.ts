@@ -3,6 +3,7 @@ import { UserRepository } from './user.repository';
 import { User } from './schema/user.schema';
 import { FilterQuery } from 'mongoose';
 import { uuid } from "uuidv4";
+import * as bcrypt from "bcrypt";
 
 @Injectable()
 export class UserService {
@@ -33,7 +34,8 @@ export class UserService {
     async create(user: User): Promise<User>{
         return await this.userRep.create({
             userId: uuid(),
-            ...user
+            ...user,
+            password: (await bcrypt.hash(user.password, 10)).toString()
         });
     }
 
