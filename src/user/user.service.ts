@@ -41,7 +41,10 @@ export class UserService {
 
     // update user method
     async update(id: string, user: Partial<User>): Promise<User>{
-        return await this.userRep.update(id, user);
+        return await this.userRep.update(id, {
+            ...user,
+            password: user.password && (await bcrypt.hash(user.password, 10)).toString() 
+        });
     }
 
     // delete use method
